@@ -147,6 +147,7 @@ class PrivateUserApiTests(TestCase):
 
         response = self.client.patch(ME_URL, payload)
 
+        # refresh db and now we should see the changes
         self.user.refresh_from_db()
         self.assertEqual(self.user.name, payload['name'])
         self.assertTrue(self.user.check_password(payload['password']))
